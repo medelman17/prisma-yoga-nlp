@@ -1,0 +1,9 @@
+{
+  "name": "prisma-blog-nlp",
+  "version": "0.0.1",
+  "description": "GraphQL backend for a blogging application that uses Natural Language Processing",
+  "main": "index.js",
+  "repository": "https://github.com/medelman17/prisma-yoga-nlp",
+  "author": "Michael Edelman",
+  "license": "MIT"
+}
