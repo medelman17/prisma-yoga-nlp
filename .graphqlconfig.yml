@@ -1,0 +1,10 @@
+projects:
+  prisma:
+    schemaPath: server/src/generated/schema.graphql
+    extensions:
+      prisma: prisma/prisma.yml
+      codegen:
+        generator: prisma-binding
+        output:
+          binding: server/src/generated/prisma.js
+        language: javascript

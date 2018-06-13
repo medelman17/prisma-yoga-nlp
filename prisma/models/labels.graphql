@@ -1,0 +1,82 @@
+interface PostLabel {
+    id: ID! @unique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    name: String! @unique
+}
+
+interface LabelEdge {
+    id: ID! @unique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    post: Post!
+    score: Float
+    beginOffset: Int
+    endOffset: Int
+}
+
+type PostEntity implements PostLabel {
+    id: ID! @unique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    name: String! @unique
+    post: [PostEntityEdge!]! @relation(name: "PostOnEntity")
+}
+
+type PostEntityEdge implements LabelEdge {
+    id: ID! @unique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    post: Post! @relation(name: "EntityOnPost")
+    entity: PostEntity! @relation(name: "PostOnEntity")
+    score: Float
+    type: EntityType
+    beginOffset: Int
+    endOffset: Int
+}
+
+enum EntityType {
+    LOCATION
+    QUANTITY
+    PERSON
+    ORGANIZATION
+    COMMERCIAL_ITEM
+    EVENT
+    DATE
+    TITLE
+    OTHER
+}
+
+type PostKeyPhrase implements PostLabel {
+    id: ID! @unique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    name: String! @unique
+    post: [PostKeyPhraseEdge!]! @relation(name: "PostOnKeyPhrase")
+}
+
+type PostKeyPhraseEdge {
+    id: ID! @unique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    post: Post! @relation(name: "KeyPhraseOnPost")
+    keyPhrase: PostKeyPhrase! @relation(name: "PostOnKeyPhrase")
+    score: Float
+    beginOffset: Int
+    endOffset: Int
+}
+
+type PostSentiment {
+    id: ID! @unique
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    sentiment: String!
+    sentimentScore: SentimentScore
+}
+
+type SentimentScore {
+    positive: Float
+    negative: Float
+    neutral: Float
+    mixed: Float
+}

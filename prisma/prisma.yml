@@ -1,0 +1,13 @@
+endpoint: https://us1.prisma.sh/michael-edelman-ba8919/prisma-blog-nlp/dev
+datamodel: 
+  - models/post.graphql
+  - models/user.graphql
+  - models/labels.graphql
+
+secret: supersecret123
+
+hooks:
+  post-deploy:
+    - echo "Deployment Finished..."
+    - graphql get-schema --project prisma
+    - graphql codegen

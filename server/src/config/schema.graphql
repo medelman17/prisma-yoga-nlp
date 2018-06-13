@@ -1,0 +1,12 @@
+#import {User} from 'server/src/generated/schema.graphql'
+
+type Mutation {
+    createUser(data: UserCreateInput!): User
+    deleteUser(where: UserWhereUniqueInput!): User
+    updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+}
+
+type Query {
+    getUser(where: UserWhereUniqueInput!): User
+}
+

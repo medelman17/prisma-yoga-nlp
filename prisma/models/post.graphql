@@ -1,0 +1,10 @@
+type Post {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String
+  author: User @relation(name: "PostsOnUser")
+  entities: [PostEntityEdge!]! @relation(name: "EntityOnPost" onDelete: CASCADE)
+  keyPhrases: [PostKeyPhraseEdge!]! @relation(name: "KeyPhraseOnPost" onDelete: CASCADE)
+  sentiment: PostSentiment
+}
